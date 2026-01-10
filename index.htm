@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/main.bundle.css" />
     <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/termynal.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body class="layout--single" dir="ltr">
@@ -62,24 +63,21 @@
             <!-- Overview -->
             <section class="section">
               <div class="container">
-                <h1 id="about" class="title">🤝 Your Partner in Mobile & Web Development</h1>
+                <h1 id="about" class="title">💼 Your Partner in Mobile & Web Development</h1>
                 <hr />
-                <p><strong>Software Engineering, Architecture & Automation</strong></p>
+
+                <br />
+
+                <div id="termynal"></div>
+
+                <br />
+
                 <p>
                   I help companies build, scale, and maintain high-impact mobile and digital products. With over 12 years of experience across the
                   full software development lifecycle, I work as a consultant and hands-on engineer, delivering robust solutions for Web, Android,
                   iOS, and cross-platform applications.
-                  <br />
-                  <br />
-                  My work goes beyond coding. I assist teams in optimizing development workflows, implementing automated testing and CI/CD pipelines,
-                  and making sound architectural decisions that reduce risk and accelerate delivery. Whether you’re launching a new product,
-                  modernizing an existing app, or strengthening your engineering practices, I provide practical, production-ready solutions.
-                  <br />
-                  <br />
-                  I’ve supported products and teams in industries such as IT services, healthcare, fintech, digital banking, and large-scale
-                  enterprise environments.
-                  <br />
                 </p>
+
                 <div class="services-cta">
                   <button type="button" class="btn btn--primary" id="book-consultation">Let's Work Together</button>
                   <button type="button" class="btn btn--primary" id="view-work">View Work</button>
@@ -88,9 +86,9 @@
             </section>
 
             <!-- Services -->
-            <section class="section">
+            <section class="section services-hidden" id="services-section">
               <div class="container">
-                <h1 id="services" class="title">🏗 Services</h1>
+                <h1 id="services" class="title">💻 Services</h1>
                 <hr />
                 <p>
                   I partner with teams and organizations to design, build, and scale reliable digital products — from early-stage concepts to mature
@@ -118,6 +116,13 @@
                     <p class="service-meta">Test Automation · CI/CD · Architecture · Code Reviews · Team Enablement</p>
                   </article>
                 </div>
+
+                <p>
+                  <br />
+                  My work goes beyond coding. I assist teams in optimizing development workflows, implementing automated testing and CI/CD pipelines,
+                  and making sound architectural decisions that reduce risk and accelerate delivery. Whether you’re launching a new product,
+                  modernizing an existing app, or strengthening your engineering practices, I provide practical, production-ready solutions.
+                </p>
               </div>
             </section>
 
@@ -132,11 +137,6 @@
                   production-ready digital products. My engagements range from starting projects from scratch to joining existing teams
                   mid-development — helping stabilize platforms, deliver critical features, improve engineering workflows, and prepare products for
                   growth.
-                </p>
-                <p>
-                  These are selected projects I’ve contributed to—either built from the ground up or by joining existing teams
-                  mid-development—spanning high-traffic consumer applications and mission-critical systems, with a strong focus on reliability,
-                  security, performance, and long-term maintainability.
                 </p>
                 <div class="project-carousel">
                   <div class="carousel-track">
@@ -153,6 +153,15 @@
                     <img src="assets/project5.jpeg" />
                   </div>
                 </div>
+                <p>
+                  These are selected projects I’ve contributed to—either built from the ground up or by joining existing teams
+                  mid-development—spanning high-traffic consumer applications and mission-critical systems, with a strong focus on reliability,
+                  security, performance, and long-term maintainability.
+                </p>
+                <p>
+                  For personal and open source projects you can reference here
+                  <a href="https://github.com/mikekpl" target="_blank" style="color: #b22222">https://github.com/mikekpl</a>
+                </p>
               </div>
             </section>
 
@@ -400,6 +409,37 @@
     </script>
     <script>
       document.getElementById("submitted_at").value = Date.now();
+    </script>
+    <script src="js/termynal.js"></script>
+    <script>
+      var termynal = new Termynal("#termynal", {
+        typeDelay: 40,
+        lineDelay: 700,
+        lineData: [
+          { type: "input", value: "Software Engineer 👾" },
+          { type: "input", value: "Software Architecture 📐" },
+          { type: "input", value: `End User Automation Test 🧪` },
+        ],
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const servicesSection = document.getElementById("services-section");
+        if (!servicesSection) return;
+        const observer = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                servicesSection.classList.remove("services-hidden");
+                servicesSection.classList.add("services-visible");
+                observer.unobserve(servicesSection);
+              }
+            });
+          },
+          { threshold: 0.2 },
+        );
+        observer.observe(servicesSection);
+      });
     </script>
   </body>
 </html>

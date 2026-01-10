@@ -105,7 +105,8 @@ ul.small {
 
 .services-cta {
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .services-cta p {
@@ -294,4 +295,18 @@ ul.small {
   .contact-form {
     padding: 1.75rem;
   }
+}
+
+.services-hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+  pointer-events: none;
+}
+.services-visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
 }
