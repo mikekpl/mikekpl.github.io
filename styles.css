@@ -50,11 +50,12 @@ body {
   flex-shrink: 0;
 }
 
-/* Project card image emerald green color mask */
+/* Project card image — grayscale by default, green tint on hover */
 .project-card-width .aspect-video {
   position: relative;
 }
 
+/* Green tint overlay — always visible at low opacity, full on hover */
 .project-card-width .aspect-video::after {
   content: '';
   position: absolute;
@@ -62,10 +63,22 @@ body {
   background: linear-gradient(135deg, #00674F99 0%, #50C87866 50%, #04630755 100%);
   mix-blend-mode: multiply;
   pointer-events: none;
+  opacity: 0.55;
+  transition: opacity 0.4s ease;
 }
 
+.project-card-width:hover .aspect-video::after {
+  opacity: 1;
+}
+
+/* Full grayscale + slight green tint by default, colour restored on card hover */
 .project-card-width .aspect-video img {
-  filter: grayscale(40%) brightness(0.85);
+  filter: grayscale(100%) brightness(0.75) sepia(30%) hue-rotate(100deg);
+  transition: filter 0.4s ease, transform 0.5s ease;
+}
+
+.project-card-width:hover .aspect-video img {
+  filter: grayscale(0%) brightness(0.85);
 }
 
 /* Tech Stack Section */
